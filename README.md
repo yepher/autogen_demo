@@ -44,3 +44,7 @@ export OPENAI_API_KEY="sk-...."
 # Run it
 ./.venv/bin/chainlit run app.py
 ```
+
+**Screenshot**
+
+![screen shot](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*XKzOsBqLchd2kYFmoy4wug.png)
