@@ -29,6 +29,12 @@ pip install -r requirements.txt
 
 ### Run
 
+Make sure you are in the `autogen_demo` directory and that the python venv is active. 
+
+You will need you OpenAI API key from [here](https://platform.openai.com/account/api-keys) set in the environment variable `OPENAI_API_KEY`
+
+**Example**
+
 ```
 # First time:
 cd autogen_demo
