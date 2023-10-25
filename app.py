@@ -1,16 +1,14 @@
-import openai
-import json, ast
 import os
+
 import chainlit as cl
-import autogen
+from flaml import autogen
 
 MAX_ITER = 5
 
 
 @cl.on_chat_start
 async def setup_agent():
-    config_list = autogen.config_list_from_json(
-    "OAI_CONFIG_LIST")
+    config_list = autogen.config_list_from_json("OAI_CONFIG_LIST")
     # create an AssistantAgent named "assistant"
     assistant = autogen.AssistantAgent(
                     name="assistant",
@@ -20,7 +18,7 @@ async def setup_agent():
                         "config_list": config_list,  # a list of OpenAI API configurations
                         "temperature": 0,  # temperature for sampling
                     },  # configuration for autogen's enhanced inference API which is compatible with OpenAI API
-                    )
+                )
     cl.user_session.set('assistant', assistant)
     # create a UserProxyAgent instance named "user_proxy"
     user_proxy = autogen.UserProxyAgent(
@@ -50,7 +48,7 @@ async def run_conversation(msg: cl.Message):
         for element in msg.elements:
             file_name = element.name
             content = element.content
-            # If want to show content Content: {content.decode('utf-8')}\n\n
+            # If you want to show Content: {content.decode('utf-8')}\n\n
             await cl.Message(content=f"Uploaded file: {file_name}\n").send()
 
             # Save the file locally
@@ -63,7 +61,7 @@ async def run_conversation(msg: cl.Message):
     print('CONVERSATION')
 
     while cur_iter < MAX_ITER:
-        if len(assistant.chat_messages[user_proxy]) == 0 :
+        if len(assistant.chat_messages[user_proxy]) == 0:
             print('initiating chat')
             user_proxy.initiate_chat(
                 assistant,

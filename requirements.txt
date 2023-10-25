@@ -1,0 +1,2 @@
+chainlit
+flaml[autogen, openai]
